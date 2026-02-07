@@ -175,7 +175,7 @@ class Config(BaseSettings):
             return self.providers.openrouter.api_base or "https://openrouter.ai/api/v1"
         if any(k in model for k in ("zhipu", "glm", "zai")):
             return self.providers.zhipu.api_base
-        if "vllm" in model:
+        if "vllm" in model or "localhost" in str(self.providers.vllm.api_base):
             return self.providers.vllm.api_base
         return None
     
